@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./slide_style.css">
+    <title>슬라이드</title>
+</head>
+<body>
+    <section>   
+        <ul class="slider">
+        <li class="slide">1</li>
+        <li class="slide">2</li>
+        <li class="slide">3</li>
+    </ul>
+</section>
+ 
+
+    <div class="prev">prev</div>
+    <div class="next">next</div>
+
+    <script>
+        const li= document.querySelectorAll('li');
+        const prev=document.querySelector('.prev');
+        const next=document.querySelector('.next');
+        const ul=document.querySelector('.slider');
+        let target;
+        let idx = 0;
+        
+        for(let i=0; i< li.length; i++){
+            li[i].style.left=`${100*i}%`;
+            // ul.style.width=`${innerWidth*i}px`;
+        }
+
+        document.body.addEventListener('click',e=>{
+            target=e.target;
+
+            if(target.nodeName==='LI'){
+                 return;
+            }
+            // target.classList.contains('prev')? 'prev' : 'next';
+            if(target.classList.contains('prev')){
+                idx--;
+                console.log(idx);
+                if(idx<0){
+                    idx===0;
+                    return;
+                }
+                ul.style.left = -idx * 100* 1 +'%';
+
+            }else if(target.classList.contains('next')){
+                idx++;
+                if(idx>2){
+                    idx===2;
+                    return;
+                }
+                ul.style.left = -idx * 100* 1 +'%';
+            }
+        
+        });
+    </script>
+</body>
+</html>
